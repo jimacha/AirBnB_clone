@@ -24,11 +24,11 @@ class HBNBCommand(cmd.Cmd):
     @classmethod
     def verify_attribute(cls, attribute):
         """verifies that an attribute is correctly formatted"""
-        if attribute[0] is attribute[-1] is '"':
+        if attribute[0] == attribute[-1] == '"':
             for i, c in enumerate(attribute[1:-1]):
-                if c is '"' and attribute[i] is not '\\':
+                if c == '"' and attribute[i] != '\\':
                     return None
-                if c is " ":
+                if c == " ":
                     return None
             return attribute.strip('"').replace('_', ' ').replace("\\\"", "\"")
         else:
@@ -37,9 +37,9 @@ class HBNBCommand(cmd.Cmd):
             for c in attribute:
                 if c not in allowed:
                     return None
-                if c is '.' and flag == 1:
+                if c == '.' and flag == 1:
                     return None
-                elif c is '.' and flag == 0:
+                elif c == '.' and flag == 0:
                     flag = 1
             if flag == 1:
                 return float(attribute)
